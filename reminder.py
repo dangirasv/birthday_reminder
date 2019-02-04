@@ -1,3 +1,10 @@
+"""
+This is a script that will run as a Cron job daily and send emails to everyone from a given list of people, except the
+person who will be celebrating their birthday. The reminder email should be sent one week before the person's birthday.
+The script should (1) validate the persons birthday data file, print errors (if found); (2) check for upcoming birthdays
+and send emails if there are any. Exit once emails are sent.
+"""
+
 import csv
 import sys
 import smtplib
@@ -36,11 +43,11 @@ def generate_birthday_rows():
 
 def send_emails(index_list):
     # Sender log in information and email smtp server information
-    from_email = "dvcodingemail@gmail.com"
-    password = "learningpython"
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    from_email = "<email>"  # your testing email account here
+    password = "<password>"  # your email account password here
+    server = smtplib.SMTP('smtp.gmail.com', 587)  # used gmail acc for testing purposes, change accordingly if needed
     server.starttls()  # Security function, needed to connect to the Gmail server
-    server.login(from_email, password)  # Loging to the server
+    server.login(from_email, password)
     # Preparing bd variable, which will show the birthday date for our emails (we know it will be in 7 days from today)
     today = datetime.today()
     bd = today.replace(day=today.day + 7)
